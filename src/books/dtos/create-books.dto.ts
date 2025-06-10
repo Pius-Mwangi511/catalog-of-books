@@ -2,7 +2,7 @@ import{IsNotEmpty,IsString} from 'class-validator'
 export class CreateBooksDto {
 
     @IsNotEmpty()
-    @IsString()
+    @IsString({message:"error title is a string"})
     title: string;
 
     @IsNotEmpty()

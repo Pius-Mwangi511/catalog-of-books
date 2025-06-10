@@ -3,6 +3,7 @@ import { DatabaseService } from 'database/connection.service';
 import { CreateBooksDto } from './dtos/create-books.dto';
 import { UpdateBookDto } from './dtos/update-books.dto';
 import { Book } from './interface/books.interface';
+import { Validate } from 'class-validator';
 
 @Injectable()
 export class BookService {
@@ -50,3 +51,4 @@ export class BookService {
     return res.rows[0].count_books_by_year;
   }
 }
+

@@ -1,14 +1,15 @@
-import { Controller,Module,  Get, Post, Put, Delete, Body, Param, HttpStatus, HttpException, Injectable, OnModuleInit } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, HttpStatus, HttpException, ValidationPipe } from '@nestjs/common';
 import { BookService } from './books.service'; 
 import { CreateBooksDto } from './dtos/create-books.dto';
-import { UpdateBookDto } from './dtos/update-books.dto'; 
+import { UpdateBookDto } from './dtos/update-books.dto';
+ 
 @Controller('books')
 export class BooksController {
 
   constructor(private readonly service: BookService) {}
 
   @Post()
-  async create(@Body() dto: CreateBooksDto) {
+  async create(@Body(ValidationPipe) dto: CreateBooksDto) {
     await this.service.create(dto);
     return { message: 'Book created successfully' };
   }
@@ -26,7 +27,7 @@ export class BooksController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() dto: UpdateBookDto) {
+  async update(@Param('id') id: string, @Body(ValidationPipe) dto: UpdateBookDto) {
     await this.service.update(+id, dto);
     return { message: 'Book updated successfully' };
   }

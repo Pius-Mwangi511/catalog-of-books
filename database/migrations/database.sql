@@ -5,5 +5,5 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Index for faster title searches
+
 CREATE INDEX IF NOT EXISTS idx_books_title ON books(title);
